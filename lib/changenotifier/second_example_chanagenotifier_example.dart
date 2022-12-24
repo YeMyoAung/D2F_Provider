@@ -3,11 +3,12 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 
-/// => Provider(
+/// Provider(
 /// create:() => KtvProvider(),
 /// child:MaterialApp(
-/// home:KtvLightExample()
-/// ))
+///       home: KtvLightExample()
+///   )
+/// )
 class KtvLightExample extends StatelessWidget {
   const KtvLightExample({super.key});
 
