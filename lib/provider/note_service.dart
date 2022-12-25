@@ -5,7 +5,13 @@ import '../model/note_model.dart';
 class NoteService extends ChangeNotifier {
   NoteModel tmpNote = NoteModel();
 
+  ///class,map,list => object ,tmpNote(mirror)
+
   final List<NoteModel> database = [];
+
+  NoteService([this.i = 0]);
+
+  int i = 0;
 
   ///ToDo::
   void addNote({
