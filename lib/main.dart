@@ -10,6 +10,7 @@ import 'package:provider_example/screen/create_note_screen.dart';
 import 'package:provider_example/screen/home_screen.dart';
 import 'package:provider_example/screen/multi_selector_screen.dart';
 import 'package:provider_example/screen/tag_screen.dart';
+import 'package:provider_example/screen/value_notifier_example.dart';
 
 class KtvProvider extends ChangeNotifier {
   Color lightColor = Colors.green;
@@ -47,7 +48,18 @@ void main() {
   //   ),
   // ),
   // );
-  runApp(const MyApp());
+  runApp(const NotifierApp());
+}
+
+class NotifierApp extends StatelessWidget {
+  const NotifierApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: NumberApiScreen(),
+    );
+  }
 }
 
 Route createRoute(Widget child) {

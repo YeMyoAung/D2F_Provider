@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_example/provider/timer_watcher_service.dart';
 
 import '../provider/mulit_selector_provider.dart';
 
-class MultiSelectorScreen extends StatelessWidget {
+class MultiSelectorScreen extends StatefulWidget {
   const MultiSelectorScreen({super.key});
+
+  @override
+  State<MultiSelectorScreen> createState() => _MultiSelectorScreenState();
+}
+
+class _MultiSelectorScreenState extends State<MultiSelectorScreen> {
+  final TextEditingController controller = TextEditingController();
+  final TimeWatcherService service = TimeWatcherService(1);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +52,16 @@ class MultiSelectorScreen extends StatelessWidget {
               ],
             ),
           ),
+
+          ///
+          ValueListenableBuilder(
+            builder: (_, generic, child) {
+              print("Rebuild ${generic.runtimeType}");
+              return Text("Changes ${generic.toString()}");
+            },
+            valueListenable: service,
+          ),
+
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -68,7 +87,9 @@ class MultiSelectorScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
+              controller: controller,
               onChanged: (value) {
+                service.value = value;
                 context.read<ShippingPrice>().select(value);
               },
               decoration: const InputDecoration(hintText: "City Name"),
